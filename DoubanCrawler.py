@@ -82,7 +82,8 @@ location_list = ['大陆', '美国', '香港','台湾','日本','韩国','英国
 # 获取当前情况下，所有电影组成的列表
 movies_list = getMovies(category_list,location_list)
 # 将每一部电影信息，写入文件
-with open('movies.csv', 'w') as f:
+# codecs 用于按指定编码进行编码后写入，否则windows打开文件可能出现乱码
+with codecs.open('movies.csv', 'w', 'utf_8_sig') as f:
     writer = csv.writer(f)
     for movies in movies_list:
         # 每个电影占一行
