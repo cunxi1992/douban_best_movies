@@ -1,9 +1,11 @@
 # -*- coding:utf-8 -*-
 import requests
 from bs4 import BeautifulSoup
+import codecs
 import csv
 # 导入第三方文件
 import expanddouban
+
 
 def getMovieUrl(category,location):
     """
@@ -104,7 +106,8 @@ def percentage(same_loc_sum, same_cat_sum):
     return percentage
 
 # 写入文件：每个电影类别中，数量排名前三的地区有哪些，以及分别占此类别电影总数的百分比
-with open('output.txt', 'w') as f:
+# codecs 用于按指定编码进行编码后写入，否则windows打开文件可能出现乱码
+with codecs.open('output.txt', 'w', 'utf_8_sig') as f:
     # 输出时使用的字符串
     message = "{}电影排名前三的地区是{}、{}、{}，分别占此类别电影总数的{}%、{}%、{}%。\n"
     # 遍历电影类别
